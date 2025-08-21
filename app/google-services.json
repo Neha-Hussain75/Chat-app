@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1011100444038",
+    "project_id": "gochatapp-44c67",
+    "storage_bucket": "gochatapp-44c67.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011100444038:android:cd65338e0abbcd36a87807",
+        "android_client_info": {
+          "package_name": "com.example.gochatapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClvA578VtTJsx3RChYwi2BixKedLmHPxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
