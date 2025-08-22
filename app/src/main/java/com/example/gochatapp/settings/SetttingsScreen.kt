@@ -27,7 +27,7 @@ fun SettingsScreen(
 ) {
     val auth = FirebaseAuth.getInstance()
     var darkMode by remember { mutableStateOf(isDarkTheme) }
-    val themeColor = Color(0xFF2C5DEC)
+    val themeColor = Color(0xFF1985F2)
 
     // Dynamic colors for light/dark mode
     val backgroundColor = if (darkMode) Color(0xFF121212) else Color(0xFFF9F9F9)

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.GoChatApp" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.GoChatApp" parent="android:Theme.Material.Light.NoActionBar" >
+        <!-- yeh drawable hamari splash screen hogi -->
+        <item name="android:windowBackground">@drawable/splash_screens</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
 </resources>

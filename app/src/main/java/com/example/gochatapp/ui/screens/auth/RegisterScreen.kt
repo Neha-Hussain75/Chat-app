@@ -9,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.*
@@ -33,42 +34,61 @@ fun RegisterScreen(
     var confirmPasswordVisible by remember { mutableStateOf(false) }
     var isLoading by remember { mutableStateOf(false) }
 
+    // ✅ Custom blue color
+    val customBlue = Color(0xFF1985F2)
+
     Scaffold { padding ->
         Box(modifier = Modifier.fillMaxSize().padding(padding)) {
             Column(
-                modifier = Modifier.fillMaxSize().padding(horizontal = 24.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 24.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                // Title
                 Text(
                     "Create Account",
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.primary
+                    color = customBlue
                 )
 
                 Spacer(modifier = Modifier.height(32.dp))
 
+                // Full Name
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
                     label = { Text("Full Name") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = customBlue,
+                        focusedLabelColor = customBlue,
+                        cursorColor = customBlue
+                    )
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+                // Email
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it },
                     label = { Text("Email") },
                     placeholder = { Text("example@gmail.com") },
                     singleLine = true,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = customBlue,
+                        focusedLabelColor = customBlue,
+                        cursorColor = customBlue
+                    )
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+                // Password
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it },
@@ -77,14 +97,20 @@ fun RegisterScreen(
                     trailingIcon = {
                         val icon = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
                         IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                            Icon(imageVector = icon, contentDescription = null)
+                            Icon(imageVector = icon, contentDescription = null, tint = customBlue)
                         }
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = customBlue,
+                        focusedLabelColor = customBlue,
+                        cursorColor = customBlue
+                    )
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+                // Confirm Password
                 OutlinedTextField(
                     value = confirmPassword,
                     onValueChange = { confirmPassword = it },
@@ -93,49 +119,58 @@ fun RegisterScreen(
                     trailingIcon = {
                         val icon = if (confirmPasswordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
                         IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
-                            Icon(imageVector = icon, contentDescription = null)
+                            Icon(imageVector = icon, contentDescription = null, tint = customBlue)
                         }
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = customBlue,
+                        focusedLabelColor = customBlue,
+                        cursorColor = customBlue
+                    )
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                Button(onClick = {
-                    if (name.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
-                        Toast.makeText(context, "All fields are required", Toast.LENGTH_SHORT).show()
-                    } else if (password != confirmPassword) {
-                        Toast.makeText(context, "Passwords do not match", Toast.LENGTH_SHORT).show()
-                    } else {
-                        isLoading = true
-                        vm.register(name, email, password) { success, uid, message ->
-                            if (success && uid != null) {
-                                // Save displayName in Firebase
-                                val dbRef = FirebaseDatabase.getInstance().getReference("users/$uid")
-                                dbRef.setValue(mapOf("name" to name, "email" to email))
-
-                                    .addOnCompleteListener {
+                // Register Button
+                Button(
+                    onClick = {
+                        if (name.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
+                            Toast.makeText(context, "All fields are required", Toast.LENGTH_SHORT).show()
+                        } else if (password != confirmPassword) {
+                            Toast.makeText(context, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                        } else {
+                            isLoading = true
+                            vm.register(name, email, password) { success, uid, message ->
+                                if (success && uid != null) {
+                                    val dbRef = FirebaseDatabase.getInstance().getReference("users/$uid")
+                                    dbRef.setValue(mapOf("name" to name, "email" to email))
+                                        .addOnCompleteListener {
+                                            isLoading = false
+                                            onRegisterSuccess(uid, name)
+                                        }.addOnFailureListener {
+                                            isLoading = false
+                                            Toast.makeText(context, "Failed to save user info", Toast.LENGTH_SHORT).show()
+                                        }
+                                } else {
                                     isLoading = false
-                                    onRegisterSuccess(uid, name)
-                                }.addOnFailureListener {
-                                    isLoading = false
-                                    Toast.makeText(context, "Failed to save user info", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, message ?: "Registration failed", Toast.LENGTH_SHORT).show()
                                 }
-                            } else {
-                                isLoading = false
-                                Toast.makeText(context, message ?: "Registration failed", Toast.LENGTH_SHORT).show()
                             }
                         }
-                    }
-                }, modifier = Modifier.fillMaxWidth()) {
-                    if (isLoading) CircularProgressIndicator(modifier = Modifier.size(18.dp))
-                    else Text("Register")
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(containerColor = customBlue)
+                ) {
+                    if (isLoading) CircularProgressIndicator(modifier = Modifier.size(18.dp), color = Color.White)
+                    else Text("Register", color = Color.White)
                 }
 
                 Spacer(modifier = Modifier.height(12.dp))
 
+                // Login link
                 TextButton(onClick = onLoginClick) {
-                    Text("Already have an account? Login")
+                    Text("Already have an account? Login", color = customBlue)
                 }
             }
         }

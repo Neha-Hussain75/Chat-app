@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.gochatapp.ui.components.ConversationListItem
 import com.example.gochatapp.viewmodel.ChatListViewModel
-
+import com. example. gochatapp. ui. components. BaseScaffold
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChatListScreen(
@@ -36,7 +36,7 @@ fun ChatListScreen(
     var expandedMenu by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { viewModel.start() }
 
-    val themeColor = Color(0xFF2C5DEC)
+    val themeColor = Color(0xFF1985F2)
     val backgroundColor = if (isDarkTheme) Color(0xFF121212) else Color(0xFFF9F9F9)
     val searchBgColor = if (isDarkTheme) Color(0xFF2C2C2C) else Color(0xFFF0F0F0)
     val secondaryTextColor = if (isDarkTheme) Color.LightGray else Color.Gray
@@ -46,7 +46,7 @@ fun ChatListScreen(
         displayName.contains(searchQuery, ignoreCase = true)
     }
 
-    Scaffold(
+    BaseScaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {

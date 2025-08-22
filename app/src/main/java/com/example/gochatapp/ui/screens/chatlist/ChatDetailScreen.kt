@@ -44,7 +44,7 @@ fun ChatDetailScreen(
     val backgroundColor = if (isDarkTheme) Color(0xFF121212) else Color.White
     val textColor = if (isDarkTheme) Color.White else Color.Black
     val secondaryTextColor = if (isDarkTheme) Color.LightGray else Color.Gray
-    val themeBlue = Color(0xFF2C5DEC)
+    val themeBlue = Color(0xFF1985F2)
 
     var otherUserName by remember { mutableStateOf(userId) }
     LaunchedEffect(userId) {
@@ -58,6 +58,7 @@ fun ChatDetailScreen(
     }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0, 0, 0, 0), // 👈 ye lagao
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -164,7 +165,7 @@ private fun MessagesList(
     isDarkTheme: Boolean
 ) {
     val ordered = messages.sortedBy { it.timestamp }
-    val bubbleColorSent = Color(0xFF2C5DEC)
+    val bubbleColorSent = Color(0xFF3393F5)
     val bubbleColorReceived = if (isDarkTheme) Color(0xFF2C2C2C) else Color(0xFFF0F0F0)
     val textColorSent = Color.White
     val textColorReceived = if (isDarkTheme) Color.White else Color.Black
@@ -176,6 +177,7 @@ private fun MessagesList(
         items(ordered, key = { it.id }) { msg ->
             MessageBubble(
                 message = msg.text,
+                timestamp = msg.timestamp,
                 isSentByCurrentUser = msg.senderId == currentUserId,
                 sentBubbleColor = bubbleColorSent,
                 receivedBubbleColor = bubbleColorReceived,

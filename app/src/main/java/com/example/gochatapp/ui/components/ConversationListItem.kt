@@ -41,7 +41,7 @@ fun ConversationListItem(
             modifier = Modifier
                 .size(48.dp)
                 .clip(CircleShape)
-                .background(Color(0xFF2C5DEC)),
+                .background(Color(0xFF1985F2)),
             contentAlignment = Alignment.Center
         ) {
             Text(

@@ -43,11 +43,11 @@ fun StartChatScreen(
     var searchQuery by remember { mutableStateOf(TextFieldValue("")) }
 
     // Colors based on theme
-    val primaryColor = if (isDarkTheme) Color(0xFF2C5DEC) else Color(0xFF2C5DEC)
+    val primaryColor = if (isDarkTheme) Color(0xFF1985F2) else Color(0xFF1985F2)
     val backgroundColor = if (isDarkTheme) Color(0xFF121212) else Color.White
     val cardColor = if (isDarkTheme) Color(0xFF1E1E1E) else Color(0xFFF7F7F7)
-    val textColor = if (isDarkTheme) Color.White else Color.Black
-    val secondaryTextColor = if (isDarkTheme) Color.LightGray else Color.Gray
+    val textColor = if (isDarkTheme) Color.Black else Color.Black
+    val secondaryTextColor = if (isDarkTheme) Color.Gray else Color.Gray
     val searchBarColor = if (isDarkTheme) Color(0xFF2C2C2C) else Color(0xFFF0F0F0)
 
     val usersRef = FirebaseDatabase.getInstance().getReference("users")
@@ -112,7 +112,8 @@ fun StartChatScreen(
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = backgroundColor
-                )
+                ),
+                modifier = Modifier.statusBarsPadding()
             )
         },
         containerColor = backgroundColor

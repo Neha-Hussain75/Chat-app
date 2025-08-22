@@ -31,7 +31,7 @@ fun ChangePasswordScreen(
     val colors = MaterialTheme.colorScheme
     val textColor = colors.onBackground
     val cardColor = colors.surface
-    val buttonColor = Color(0xFF2C5DEC)
+    val buttonColor = Color(0xFF1985F2)
 
 
     Scaffold(
@@ -50,7 +50,9 @@ fun ChangePasswordScreen(
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = colors.background)
             )
         },
-        containerColor = colors.background
+        containerColor = colors.background,
+        modifier = Modifier.statusBarsPadding()
+
     ) { padding ->
         Column(
             modifier = Modifier
