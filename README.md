@@ -53,20 +53,20 @@ This project includes a `google-services.json` file only for **demo/testing purp
 ## 🖼 Screenshots
 
 <p align="center">
-  <img src="screenshots/splashscreen.png" alt="Splash Screen" width="250"/>
-  <img src="screenshots/login.png" alt="Login Screen" width="250"/>
-  <img src="screenshots/register.png" alt="Register Screen" width="250"/>
+  <img src="screenshots/splashscreen.jpg" alt="Splash Screen" width="250"/>
+  <img src="screenshots/login.jpg" alt="Login Screen" width="250"/>
+  <img src="screenshots/register.jpg" alt="Register Screen" width="250"/>
 </p>
 
 <p align="center">
-  <img src="screenshots/homescreen.png" alt="Home Screen" width="250"/>
-  <img src="screenshots/chatscreen.png" alt="Chat Screen" width="250"/>
-  <img src="screenshots/setting.png" alt="Settings Screen" width="250"/>
+  <img src="screenshots/homescreen.jpg" alt="Home Screen" width="250"/>
+  <img src="screenshots/chatscreen.jpg" alt="Chat Screen" width="250"/>
+  <img src="screenshots/setting.jpg" alt="Settings Screen" width="250"/>
 </p>
 
 <p align="center">
-  <img src="screenshots/editprofile.png" alt="Edit Profile Screen" width="250"/>
-  <img src="screenshots/password.png" alt="Password Screen" width="250"/>
+  <img src="screenshots/editprofile.jpg" alt="Edit Profile Screen" width="250"/>
+  <img src="screenshots/password.jpg" alt="Password Screen" width="250"/>
 </p>
 
 
