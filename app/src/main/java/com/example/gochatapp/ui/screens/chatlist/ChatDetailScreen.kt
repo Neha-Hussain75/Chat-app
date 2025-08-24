@@ -58,16 +58,22 @@ fun ChatDetailScreen(
     }
 
     Scaffold(
-        contentWindowInsets = WindowInsets(0, 0, 0, 0), // 👈 ye lagao
         topBar = {
             TopAppBar(
+                modifier = Modifier.height(82.dp),
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    IconButton(
+                        onClick = onBack,
+                        modifier = Modifier.padding(top = 20.dp)
+                    ) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = textColor)
                     }
                 },
                 title = {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(top = 20.dp) // ✅ avatar + name + online neeche
+                    ) {
                         // Circle avatar with initial
                         Box(
                             modifier = Modifier
@@ -83,9 +89,15 @@ fun ChatDetailScreen(
                             )
                         }
                         Spacer(Modifier.width(8.dp))
-                        Column {
-                            Text(otherUserName, color = textColor, fontWeight = FontWeight.SemiBold)
-                            Text("Online", color = secondaryTextColor, style = MaterialTheme.typography.labelSmall)
+                        Column(
+                            modifier = Modifier.padding(top = 6.dp) // ✅ Sirf name + online ko thoda neeche
+                        ) {
+                            Text(otherUserName,
+                                color = textColor,
+                                fontWeight = FontWeight.SemiBold)
+                            Text("Online",
+                                color = secondaryTextColor,
+                                style = MaterialTheme.typography.labelSmall)
                         }
                     }
                 },
@@ -121,8 +133,8 @@ fun ChatDetailScreen(
                             unfocusedIndicatorColor = themeBlue,
                             focusedIndicatorColor = themeBlue,
                             cursorColor = themeBlue,
-                            focusedTextColor = textColor,    // ✅ yeh use karo
-                            unfocusedTextColor = textColor   // ✅ yeh bhi
+                            focusedTextColor = textColor,
+                            unfocusedTextColor = textColor
                         )
                     )
 
@@ -150,7 +162,7 @@ fun ChatDetailScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(inner)
-                    .padding(horizontal = 36.dp, vertical = 4.dp), // 👈 gap from edges
+                    .padding(horizontal = 36.dp, vertical = 4.dp),
                 isDarkTheme = isDarkTheme
             )
         }

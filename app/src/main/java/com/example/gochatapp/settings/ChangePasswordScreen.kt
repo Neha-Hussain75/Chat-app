@@ -37,9 +37,9 @@ fun ChangePasswordScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Change Password", color = textColor) },
+                title = { Text("Change Password", color = textColor,modifier = Modifier.padding(top = 16.dp)) },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = { navController.popBackStack() },modifier = Modifier.padding(top = 16.dp)) {
                         Icon(
                             imageVector = androidx.compose.material.icons.Icons.Default.ArrowBack,
                             contentDescription = "Back",

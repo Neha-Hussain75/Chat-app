@@ -54,13 +54,16 @@ fun ChatListScreen(
                         "Chats",
                         color = if (isDarkTheme) Color.White else Color.Black,
                         fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(top = 16.dp) // 👈 yahan neeche karne ke liye
                     )
-                },
+                }
+                ,
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = backgroundColor),
                 actions = {
                     Box {
-                        IconButton(onClick = { expandedMenu = true }) {
+                        IconButton(onClick = { expandedMenu = true },
+                            modifier = Modifier.padding(top = 16.dp)) {
                             Icon(
                                 Icons.Default.MoreVert,
                                 contentDescription = "Menu",

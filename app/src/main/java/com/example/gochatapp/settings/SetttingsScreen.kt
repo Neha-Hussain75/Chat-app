@@ -38,9 +38,9 @@ fun SettingsScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Settings", fontWeight = FontWeight.Bold, color = textColor) },
+                title = { Text("Settings", fontWeight = FontWeight.Bold, color = textColor ,modifier = Modifier.padding(top = 16.dp)) },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = { navController.popBackStack() },modifier = Modifier.padding(top = 16.dp)) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = textColor)
                     }
                 },

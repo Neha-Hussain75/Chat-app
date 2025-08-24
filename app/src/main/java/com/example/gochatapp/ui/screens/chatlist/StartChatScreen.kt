@@ -98,11 +98,13 @@ fun StartChatScreen(
                         text = "Start Chat",
                         fontWeight = FontWeight.Bold,
                         color = textColor,
-                        fontSize = 20.sp
+                        fontSize = 20.sp,
+                        modifier = Modifier.padding(top = 16.dp)
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = { navController.popBackStack() },
+                        modifier = Modifier.padding(top = 16.dp)) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Back",
